@@ -11,32 +11,79 @@ const Video = () => {
     const moviesList = useMovies();
     const [imageSrc, setImageSrc] = useState('');
 
+    // const clickHandler = async () => {
+    //     console.log("Checking");
+    //     const frame = captureVideoFrame("my-video-id", "png");
+    //     console.log(frame);
+    //     const formData = new FormData();
+    //     formData.append('file', frame.dataUri);
+
+
+    //     const cloudinaryUploadUrl = 'https://api.cloudinary.com/v1_1/ddlly0w8c/image/upload';
+    //     const uploadPreset = process.env.REACT_APP_CLOUDINARY_PRESET;  
+
+
+    //     try {
+    //         const response = await axios.post(cloudinaryUploadUrl, formData, {
+    //             params: {
+    //                 upload_preset: uploadPreset,
+    //                 // tags: 'myvideo'
+    //             }
+    //         });
+    //         // console.log(response.data);
+    //         const imageUrl = response.data.url
+    //         console.log(imageUrl)
+    //         setImageSrc(imageUrl)
+
+    //     } catch (error) {
+    //         console.error('Error uploading to Cloudinary:', error);
+    //     }
+    // };
+
     const clickHandler = async () => {
         console.log("Checking");
+    
+        
         const frame = captureVideoFrame("my-video-id", "png");
-        console.log(frame);
+        // console.log(frame);
+    
+    
         const formData = new FormData();
         formData.append('file', frame.dataUri);
-
-
-        const cloudinaryUploadUrl = 'https://api.cloudinary.com/v1_1/ddlly0w8c/image/upload';
-        const uploadPreset = process.env.REACT_APP_CLOUDINARY_PRESET;  
-
-
+    
+        const cloudinaryUploadUrl = 'https://api.cloudinary.com/v1_1/dldlqv8js/image/upload';
+        const uploadPreset = process.env.REACT_APP_CLOUDINARY_PRESET;
+    
         try {
-            const response = await axios.post(cloudinaryUploadUrl, formData, {
+            // Uploading the image to Cloudinary
+            const cloudinaryResponse = await axios.post(cloudinaryUploadUrl, formData, {
                 params: {
                     upload_preset: uploadPreset,
                     // tags: 'myvideo'
+                },
+                headers: {
+                    'Content-Type': 'multipart/form-data'
                 }
             });
-            // console.log(response.data);
-            const imageUrl = response.data.url
-            console.log(imageUrl)
-            setImageSrc(imageUrl)
-
+    
+            
+            const imageUrl = cloudinaryResponse.data.url;
+            console.log('Uploaded Image URL:', imageUrl);
+    
+            // Flask backend API to process the image
+            const backendUrl = 'http://127.0.0.1:5000/api/detectImage'; 
+            const backendResponse = await axios.post(backendUrl, {
+                imageUrl: imageUrl
+            });
+    
+            
+            console.log('Backend Response:', backendResponse.data);
+    
+            // Update state or perform further actions based on backend response
+            setImageSrc(imageUrl);
+    
         } catch (error) {
-            console.error('Error uploading to Cloudinary:', error);
+            console.error('Error:', error);
         }
     };
 
