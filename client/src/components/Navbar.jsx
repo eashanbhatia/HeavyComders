@@ -7,7 +7,7 @@ const navbar = () => {
         <img src="https://m.media-amazon.com/images/G/01/digital/video/web/Logo-min.png" alt="" className=''/>
       </div>
       <div className="text text-white flex flex-row align-middle my-auto gap-5">
-        <div className=""><a href="#">Home</a></div>
+        <div className=""><a href="/">Home</a></div>
         <div className="">Store</div>
         <div className="">Live TV</div>
         <div className="">Categories</div>
