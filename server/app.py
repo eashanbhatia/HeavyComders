@@ -16,47 +16,31 @@ from tensorflow.keras.preprocessing.image import load_img,img_to_array
 from tensorflow.keras.applications.vgg16 import preprocess_input
 from scipy.spatial.distance import cosine
 app = Flask(__name__)
-# MONGO_URI = ''
-# client = MongoClient(MONGO_URI)
-# db = client['']
-# collection = db['']
+
 CORS(app, support_credentials=True)
-# Initialize YOLO model outside of the route
+
 yolo_model = YOLO('best.pt')
 model = YOLO('best.pt')
-# dirr = 'C:/Users/Eashan/Desktop/amazonhackon/server/output'  
-# yolo_model = YOLO('best.pt', save_dir=save_dir)
+
 
 
 def load_image_from_url(url):
-            # Send a GET request to the URL
+            
             response = requests.get(url)
-            # Raise an exception if there's an error
+            
             response.raise_for_status()
             
-            # Read the image data from the response
+            
             image_data = response.content
-            # Convert the image data to a numpy array
+            
             image_array = np.asarray(bytearray(image_data), dtype=np.uint8)
-            # Decode the numpy array to an image
+            
             image = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
             
             return image
 
-        # URL of the image
-        # url = 'https://example.com/path/to/your/image.jpg'
-
-        # Load the image
         
-# def query_images(image_names):
-#     queries = [{"image_name": image_name} for image_name in image_names]
-#     results_products = []
-            
-#     for query in queries:
-#         resultnew = collection.find_one(query)
-#         if resultnew:
-#             results_products.append(resultnew)
-#     return jsonify(results_products)
+
 
 
 
@@ -198,22 +182,3 @@ def detect_image():
     
     except Exception as e:
         return jsonify({'error': str(e)})
-
-image_names = ['shoe_1.jpg', 'lamp_9.jpg', 'lamp_41.jpg', 'bookshelf_8.jpg']
-@app.route('/query_images', methods=['GET'])
-@cross_origin(supports_credentials=True)
-def query_images():
-    # Create the query to find all documents where 'image_name' is in the image_names list
-    query = {"image_name": {"$in": image_names}}
-    
-    # Execute the query
-    resultssssss = collection.find(query)
-    
-    # Convert the results to a list of dictionaries
-    result_list = [result for result in resultssssss]
-    
-    # Return the results as a JSON response
-    return jsonify(result_list)
-
-if __name__ == '__main__':
-    app.run(debug=True)

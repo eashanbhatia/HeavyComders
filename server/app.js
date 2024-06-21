@@ -25,36 +25,9 @@ app.use(bodyParser.json());
 
 
 
-// Connect to the MongoDB client
+
 const { MongoClient } = require('mongodb');
 
-// async function findProducts() {
-//     const uri = "";
-//     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-//     try {
-//         await client.connect();
-//         const database = client.db('');
-//         const collection = database.collection('');
-
-//         const results = [];
-
-//         for (const imageName of imageNames) {
-//             const query = { image_name: imageName };
-//             const product = await collection.findOne(query);
-//             if (product) {
-//                 results.push(product);
-//             }
-//         }
-
-//         console.log(results);
-//         return results;
-//     } finally {
-//         await client.close();
-//     }
-// }
-
-// findProducts().catch(console.error);
 
     const uri = process.env.MONGO_URL;
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
