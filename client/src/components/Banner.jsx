@@ -5,7 +5,7 @@ const Banner = () => {
         <div>
             {/* <div>Banner</div> */}
             <img 
-            src="https://m.media-amazon.com/images/G/01/primevideo/seo/primevideo-seo-logo.png"
+            src="https://static1.moviewebimages.com/wordpress/wp-content/uploads/2023/10/25-best-original-movies-on-prime-video-to-watch-right-now.jpg"
             alt=""
             className='w-full' />
         </div>

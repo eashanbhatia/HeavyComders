@@ -18,28 +18,31 @@ from scipy.spatial.distance import cosine
 app = Flask(__name__)
 
 CORS(app, support_credentials=True)
-
+# Initialize YOLO model outside of the route
 yolo_model = YOLO('best.pt')
 model = YOLO('best.pt')
 
 
 
 def load_image_from_url(url):
-            
+            # Send a GET request to the URL
             response = requests.get(url)
-            
+            # Raise an exception if there's an error
             response.raise_for_status()
             
-            
+            # Read the image data from the response
             image_data = response.content
-            
+            # Convert the image data to a numpy array
             image_array = np.asarray(bytearray(image_data), dtype=np.uint8)
-            
+            # Decode the numpy array to an image
             image = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
             
             return image
 
-        
+        # URL of the image
+        # url = 'https://example.com/path/to/your/image.jpg'
+
+        # Load the image
 
 
 
@@ -182,3 +185,8 @@ def detect_image():
     
     except Exception as e:
         return jsonify({'error': str(e)})
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -28,7 +28,7 @@ const Carousel = () => {
     };
 
     return (
-        <div className='bg-slate-900 pt-5'>
+        <div className='bg-black pt-5'>
             <div className='slider-contiiii w-11/12 mx-auto'>
                 <Slider {...settings}>
                     {moviesList.map(eachMovie => (

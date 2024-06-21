@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useMovies } from '../MoviesContext';
 import { useParams } from 'react-router-dom';
 import ReactPlayer from 'react-player';
@@ -30,6 +30,27 @@ const Video = () => {
     const moviesList = useMovies();
     const [imageSrc, setImageSrc] = useState('');
     const [products, setProducts] = useState([]);
+
+    const [isPaused, setIsPaused] = useState(true); // Assume video is paused initially
+    const videoRef = useRef(null);
+
+    useEffect(() => {
+        const videoElement = videoRef.current;
+
+        const handlePause = () => setIsPaused(true);
+        const handlePlay = () => setIsPaused(false);
+
+        if (videoElement) {
+            videoElement.addEventListener('pause', handlePause);
+            videoElement.addEventListener('play', handlePlay);
+
+            // Cleanup event listeners on component unmount
+            return () => {
+                videoElement.removeEventListener('pause', handlePause);
+                videoElement.removeEventListener('play', handlePlay);
+            };
+        }
+    }, []);
     // const clickHandler = async () => {
     //     console.log("Checking");
     //     const frame = captureVideoFrame("my-video-id", "png");
@@ -110,7 +131,7 @@ const Video = () => {
 
     const clickHandler = async () => {
         console.log("Checking");
-
+        setProducts([]);
         const frame = captureVideoFrame("my-video-id", "png");
         console.log(frame.dataUri);
 
@@ -153,6 +174,7 @@ const Video = () => {
             console.log('MongoDB API Response:', mongoResponse.data);
             // const productdiv = document.getElementById('productdiv');
             // productdiv.innerHTML=''
+            // setProducts([]);
             setProducts(mongoResponse.data);
             // Update state or perform further actions based on MongoDB API response
             setImageSrc(imageUrl);
@@ -167,10 +189,10 @@ const Video = () => {
     // const [imageSrc, setImageSrc] = useState(null);
 
     return (
-        <div>
+        <div className=''>
             {/* <h1>Video {id}</h1> */}
-            <div className='py-1 w-full bg-black flex flex-row pb-10'>
-                <video id="my-video-id" controls className='w-10/12 mx-auto rounded-lg border-grey border-2'>
+            <div className='py-1 w-full bg-black flex flex-row pb-[200px]'>
+                <video id="my-video-id" controls className='w-10/12 mx-auto rounded-lg border-grey border-2 mt-[60px]' ref={videoRef}>
                     <source src={videos} type="video/mp4" />
                 </video>
 
@@ -179,18 +201,23 @@ const Video = () => {
 
                 <div className='text-white'>
                     <Sheet className='text-white'>
-                        <SheetTrigger className='top-5 absolute right-[265px] text-blue-600'>View Products</SheetTrigger>
+                        <SheetTrigger className='top-3 absolute right-[220px]  z-20'>
+                            <Button onClick={clickHandler} className='outline'>
+                                View Products 
+                                <MdOutlineProductionQuantityLimits className='my-auto ml-2' />
+                            </Button>
+                        </SheetTrigger>
                         <SheetContent className='bg-transparent overflow-y-auto'>
                             <SheetHeader>
-                                <SheetTitle className='text-white'>Products on the current screen:</SheetTitle>
-                                <SheetDescription className='overflow-y-auto'>
+                                <SheetTitle className='text-white '>Products on the current screen:</SheetTitle>
+                                <SheetDescription className=''>
                                     {/* <Card /> */}
                                     {/* <div style={cardStyle}>
                                     <img src={product.image_url} alt={product.title} style={imageStyle} />
                                     <h3><a href={product.product_url} target="_blank" rel="noopener noreferrer">{product.title}</a></h3>
                                     <p>Price: {product.price}</p>
                                 </div> */}
-                                
+
                                     <div className='text-white ml-2 text-2xl text-bold mx-auto flex top-32 relative align-middle justify-center'>
                                         <FontAwesomeIcon icon={faSpinner} spinPulse className='mx-auto' />
                                     </div>
@@ -207,8 +234,18 @@ const Video = () => {
                 </div>
             </div>
             {/* <button onClick={clickHandler} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex flex-row my-auto'>XRAY <MdOutlineProductionQuantityLimits className='my-auto ml-2' /> </button> */}
-            <Button variant='outline' size='34' onClick={clickHandler} className='p-1 relative bottom-[105px] left-60'>XRAY <MdOutlineProductionQuantityLimits className='my-auto ml-2' /> </Button>
+            {/* <Button variant='outline' size='34' onClick={clickHandler} className='p-1 relative bottom-[105px] left-60'>XRAY <MdOutlineProductionQuantityLimits className='my-auto ml-2' /> </Button> */}
             {/* {imageSrc && <img src={imageSrc} alt="Captured frame" />} */}
+            {/* {isPaused && ( */}
+                {/* <Button
+                    variant='secondary'
+                    size='34'
+
+                    className='p-2 relative bottom-[610px] left-[120px]'>
+                    XRAY
+                    <MdOutlineProductionQuantityLimits className='my-auto ml-2' />
+                </Button> */}
+            {/* )} */}
         </div>
     );
 };
