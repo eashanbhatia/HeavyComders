@@ -1,0 +1,8 @@
+path: C:\Users\aman bhardwaj\Desktop\aman_yolo\air_yolo
+train: images\train
+val: images\val
+
+
+#classes
+nc: 7
+names: [ 'ball', 'bookshelf', 'lamp', 'plant', 'shoe', 'suit', 'telephone']
