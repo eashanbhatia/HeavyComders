@@ -43,12 +43,6 @@ Our project enhances the Amazon Prime viewing experience by integrating a Visual
      - The transition from viewing to shopping is smooth, ensuring minimal disruption.
      - Users can easily navigate back to their video content after exploring or purchasing products.
 
-## Technologies Used:
-- **ReactJS**: For developing a user-friendly frontend interface.
-- **Flask/ExpressJS**: For building the backend web application.
-- **YOLO (You Only Look Once)**: For real-time object detection in video frames.
-- **Cosine Similarity**: To match detected products with Amazon's product listings.
-- **MongoDB**: For storing the products in the database.
 
 ## Demo:
 
@@ -58,19 +52,33 @@ Our project enhances the Amazon Prime viewing experience by integrating a Visual
 
 ### 2. Go to the Video :
 - While watching a movie or show, see a cool outfit, furniture piece, or anything else that catches your eye?
-- ![Video Screen with "View Products" Button](./client/public/images/video.png)
+ ![Video Screen with "View Products" Button](./client/public/images/video.png)
 
 ### 3. Viewing Identified Products:
 - Click the "View Products" button. The system will analyze the frame and display a list of identified products in the scene.
-- ![Frame for Product Identification](./client/public/images/frame.png)
-- ![List of Identified Products](./client/public/images/products.png)
+ ![Frame for Product Identification](./client/public/images/frame.png)
+ ![List of Identified Products](./client/public/images/products.png)
 
 ### 4. Viewing Product Details on Amazon:
 - Click on any product from the list to view its detailed page on Amazon, where you can see images, specifications, customer reviews, and ratings.
-- ![Product Page on Amazon](./client/public/images/amazon.png)
+ ![Product Page on Amazon](./client/public/images/amazon.png)
 
 ### 5. Demo Videos:
 - Watch a demonstration of pausing the video, clicking the "View Products" button, and displaying the identified products.
-  - ![Pausing Video and Viewing Products](https://github.com/eashanbhatia/HeavyComders/blob/main/client/public/videos/first.gif)
+   ![Pausing Video and Viewing Products](https://github.com/eashanbhatia/HeavyComders/blob/main/client/public/videos/first.gif)
 - Watch a demonstration of clicking on a product from the list and being redirected to the Amazon product page for purchase.
-  - ![Clicking Product and Redirecting to Amazon](https://github.com/eashanbhatia/HeavyComders/blob/main/client/public/videos/second.gif)
+   ![Clicking Product and Redirecting to Amazon](https://github.com/eashanbhatia/HeavyComders/blob/main/client/public/videos/second.gif)
+
+
+## Technologies Used:
+- **ReactJS**: For developing a user-friendly frontend interface.
+- **Flask/ExpressJS**: For building the backend web application.
+- **YOLO (You Only Look Once)**: For real-time object detection in video frames.
+- **Cosine Similarity**: To match detected products with Amazon's product listings.
+- **MongoDB**: For storing the products in the database.
+
+## Future Prospects:
+- **Active Viewers, Passive Buyers**: Many Prime Video users primarily watch content without actively intending to shop. X-ray unlocks a new dimension by capturing their implicit purchase intent.
+- **Impulse Purchases Made Easy**: X-ray eliminates the need to leave the streaming experience, this can be particularly effective for convenience-driven or impulse-prone consumers who might not have actively sought out the product but are enticed by its visual presence in a video.
+- **Reaching New Consumer Segments**: It has the potential to attract demographics that might not traditionally be heavy Amazon shoppers. For example, younger audiences who are accustomed to in-app purchases and visually driven content can be drawn to the ease of X-ray. This broadens Amazon's reach beyond its established customer base.
+
