@@ -65,11 +65,9 @@ Our project enhances the Amazon Prime viewing experience by integrating a Visual
 
 ### 5. Demo Videos:
 - Watch a demonstration of pausing the video, clicking the "View Products" button, and displaying the identified products.
-  
-      ![Pausing Video and Viewing Products](https://github.com/eashanbhatia/HeavyComders/blob/main/client/public/videos/first.gif)
+   ![Pausing Video and Viewing Products](https://github.com/eashanbhatia/HeavyComders/blob/main/client/public/videos/first.gif)
 - Watch a demonstration of clicking on a product from the list and being redirected to the Amazon product page for purchase.
-  
-      ![Clicking Product and Redirecting to Amazon](https://github.com/eashanbhatia/HeavyComders/blob/main/client/public/videos/second.gif)
+   ![Clicking Product and Redirecting to Amazon](https://github.com/eashanbhatia/HeavyComders/blob/main/client/public/videos/second.gif)
 
 
 ## Technologies Used:
