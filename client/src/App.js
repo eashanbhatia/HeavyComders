@@ -10,7 +10,8 @@ import Home from './components/Home';
 import { createContext, useContext } from 'react';
 import { MoviesProvider } from './MoviesContext';  //Context created for movies
 
-
+import { ClickedProductsProvider } from './ClickedProductsContext';
+import Viewed from './components/Viewed';
 
 function App() {
 
@@ -60,18 +61,22 @@ function App() {
     // </div>
     <>
       <BrowserRouter>
-        <MoviesProvider movies={moviesList}>
-          <Navbar />
-          {/* <Banner /> */}
-          {/* <Carousel /> */}
+      <ClickedProductsProvider>
+          <MoviesProvider movies={moviesList}>
+            <Navbar />
+            {/* <Banner /> */}
+            {/* <Carousel /> */}
 
-          <Routes>
-            <Route path='/' element={<Home />}></Route>
-            <Route path='/video/:id' element={<Video />}></Route>
-            {/* <Route path='/carousel' element={<Carousel moviesList={moviesList} />}></Route> */}
-            {/* <Route path='/Carousel' element={<Carousel moviesList={moviesList}>}</Route> */}
-          </Routes>
-        </MoviesProvider>
+            <Routes>
+              <Route path='/' element={<Home />}></Route>
+              <Route path='/viewed' element={<Viewed />}></Route>
+              <Route path='/video/:id' element={<Video />}></Route>
+              
+              {/* <Route path='/carousel' element={<Carousel moviesList={moviesList} />}></Route> */}
+              {/* <Route path='/Carousel' element={<Carousel moviesList={moviesList}>}</Route> */}
+            </Routes>
+          </MoviesProvider>
+          </ClickedProductsProvider>
       </BrowserRouter>
     </>
   );

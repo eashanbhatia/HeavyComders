@@ -10,7 +10,7 @@ const Home = () => {
     return (
         <div>
             {/* <Banner /> */}
-            <Navbar className='fixed' />
+            {/* <Navbar className='fixed' /> */}
             <BannerSlider />
             <Carousel />
         </div>

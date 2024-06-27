@@ -52,7 +52,7 @@ app.post('/find-products', async (req, res) => {
                 results.push(product);
             }
         }
-
+        console.log(results)
         res.json(results);
     } catch (error) {
         console.error(error);

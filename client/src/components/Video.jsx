@@ -192,7 +192,7 @@ const Video = () => {
         <div className=''>
             {/* <h1>Video {id}</h1> */}
             <div className='py-1 w-full bg-black flex flex-row pb-[200px]'>
-                <video id="my-video-id" controls className='w-10/12 mx-auto rounded-lg border-grey border-2 mt-[60px]' ref={videoRef}>
+                <video id="my-video-id" controls className='w-10/12 mx-auto rounded-lg border-grey border-2 ' ref={videoRef}>
                     <source src={videos} type="video/mp4" />
                 </video>
 
