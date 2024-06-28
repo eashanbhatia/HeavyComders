@@ -5,7 +5,8 @@ import ReactPlayer from 'react-player';
 import '../../node_modules/video-react/dist/video-react.css';
 import captureVideoFrame from "capture-video-frame";
 import axios from 'axios';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import videos from '../assets/airTrailer.mp4';
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -128,7 +129,11 @@ const Video = () => {
     //         console.error('Error:', error);
     //     }
     // };
-
+    const showToastMessage = () => {
+        toast.success("Success Notification !", {
+            position: "top-center",
+        })
+    }
     const clickHandler = async () => {
         console.log("Checking");
         setProducts([]);
@@ -188,25 +193,81 @@ const Video = () => {
     // State setup in your component
     // const [imageSrc, setImageSrc] = useState(null);
 
+    // const handleSingleCrop = async () => {
+    //     try {
+    //         const response = await axios.post('http://127.0.0.1:5000/run_script');
+    //         console.log(response.data);
+    //         const imageNames = response.data.result;
+    //         // Handle success, show a message, etc.
+
+    //         const mongoApiUrl = 'http://localhost:5000/find-products'; // Change this to your actual MongoDB API URL
+    //         const mongoResponse = await axios.post(mongoApiUrl, {
+    //             imageNames: imageNames
+    //         });
+    //         console.log('MongoDB API Response:', mongoResponse.data);
+    //     } catch (error) {
+    //         console.error('Error triggering script:', error);
+    //         // Handle error, show an error message, etc.
+    //     }
+    // };
+
+    const handleSingleCrop = async () => {
+        try {
+            const response = await axios.post('http://127.0.0.1:5000/run_script');
+            console.log(response.data);
+            const imageNames = response.data.result;
+
+            const mongoApiUrl = 'http://localhost:5000/find-products'; // Change this to your actual MongoDB API URL
+            const mongoResponse = await axios.post(mongoApiUrl, {
+                imageNames: imageNames
+            });
+            console.log('MongoDB API Response:', mongoResponse.data);
+
+            // Show toast notifications for each product
+            mongoResponse.data.forEach(product => {
+                toast(
+                    <div className="flex items-center p-4 bg-white rounded-lg shadow-md ">
+                        <img src={product.image_url} alt={product.title} className="h-20 rounded-lg mr-4" />
+                        <div className="flex flex-col">
+                            <strong className="font-bold text-sm text-gray-900 line-clamp-2">{product.title}</strong>
+                            <div className="text-gray-600">Price: {product.price}</div>
+                            <a href={product.product_url} target="_blank" rel="noopener noreferrer" className="mt-2 text-blue-500 hover:underline">View Product</a>
+                        </div>
+                    </div>,
+                    { autoClose: false, className: 'bg-white shadow-lg rounded-lg' }
+                );
+            });
+        } catch (error) {
+            console.error('Error triggering script:', error);
+            toast.error('Error triggering script');
+        }
+    };
+
+
+
     return (
         <div className=''>
             {/* <h1>Video {id}</h1> */}
             <div className='py-1 w-full bg-black flex flex-row pb-[200px]'>
-                <video id="my-video-id" controls className='w-10/12 mx-auto rounded-lg border-grey border-2 ' ref={videoRef}>
+                <video id="my-video-id" controls className='w-10/12 mx-auto rounded-lg border-grey border-2' ref={videoRef}>
                     <source src={videos} type="video/mp4" />
                 </video>
 
+                <Button onClick={handleSingleCrop}>CROP SINGLE IMAGE</Button>
+                {/* <Button onClick={showToastMessage}>Notify</Button> */}
+                <ToastContainer />
             </div>
             <div className='bg-black'>
 
                 <div className='text-white'>
                     <Sheet className='text-white'>
-                        <SheetTrigger className='top-3 absolute right-[220px]  z-20'>
+                        <SheetTrigger className='top-3 absolute right-[210px]  z-20'>
                             <Button onClick={clickHandler} className='outline'>
-                                View Products 
+                                View Products
                                 <MdOutlineProductionQuantityLimits className='my-auto ml-2' />
                             </Button>
                         </SheetTrigger>
+
                         <SheetContent className='bg-transparent overflow-y-auto'>
                             <SheetHeader>
                                 <SheetTitle className='text-white '>Products on the current screen:</SheetTitle>
@@ -237,7 +298,7 @@ const Video = () => {
             {/* <Button variant='outline' size='34' onClick={clickHandler} className='p-1 relative bottom-[105px] left-60'>XRAY <MdOutlineProductionQuantityLimits className='my-auto ml-2' /> </Button> */}
             {/* {imageSrc && <img src={imageSrc} alt="Captured frame" />} */}
             {/* {isPaused && ( */}
-                {/* <Button
+            {/* <Button
                     variant='secondary'
                     size='34'
 
