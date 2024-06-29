@@ -15,7 +15,7 @@ const Navbar = () => {
         <div className="">Store</div>
         <div className="">Live TV</div>
         <div className="">Categories</div>
-        <div className=""><a href="/viewed">My Products</a></div>
+        <div className="">My Stuff</div>
       </div>
     </div>
   );

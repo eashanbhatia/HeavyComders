@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import Card from './Card';
 import Mysheet from './Mysheet';
+import { FaRegHeart } from "react-icons/fa";
 import {
     Sheet,
     SheetContent,
@@ -21,7 +22,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "src/components/ui/sheet"
-
+import { MdOutlineDraw } from "react-icons/md";
 import Mycard from './Mycard';
 import { Button } from './ui/button';
 
@@ -252,23 +253,22 @@ const Video = () => {
                 <video id="my-video-id" controls className='w-10/12 mx-auto rounded-lg border-grey border-2' ref={videoRef}>
                     <source src={videos} type="video/mp4" />
                 </video>
-
-                <Button onClick={handleSingleCrop}>CROP SINGLE IMAGE</Button>
-                {/* <Button onClick={showToastMessage}>Notify</Button> */}
-                <ToastContainer />
-            </div>
-            <div className='bg-black'>
-
-                <div className='text-white'>
+                <div className='mx-auto flex flex-col justify-center'>
+                    
+                    <br />
+                    <Button><a href="/viewed" className='text-xl flex flex-row'>Wishlisted <FaRegHeart size={26} className='mx-1'/> </a></Button>
+                    <Button onClick={handleSingleCrop} className='p-1 my-6 text-xl flex flex-row'>Sketch<MdOutlineDraw size={30} className='mx-1'/></Button>
+                    {/* <Button onClick={showToastMessage}>Notify</Button> */}
+                    <ToastContainer />
                     <Sheet className='text-white'>
-                        <SheetTrigger className='top-3 absolute right-[210px]  z-20'>
-                            <Button onClick={clickHandler} className='outline'>
+                        <SheetTrigger className='z-20'>
+                            <Button onClick={clickHandler} className=' text-xl bg-[#ffd814] text-black hover:bg-yellow-500'>
                                 View Products
                                 <MdOutlineProductionQuantityLimits className='my-auto ml-2' />
                             </Button>
                         </SheetTrigger>
 
-                        <SheetContent className='bg-transparent overflow-y-auto'>
+                        <SheetContent className='bg-transparent overflow-y-auto' side='left' >
                             <SheetHeader>
                                 <SheetTitle className='text-white '>Products on the current screen:</SheetTitle>
                                 <SheetDescription className=''>
@@ -280,7 +280,7 @@ const Video = () => {
                                 </div> */}
 
                                     <div className='text-white ml-2 text-2xl text-bold mx-auto flex top-32 relative align-middle justify-center'>
-                                        <FontAwesomeIcon icon={faSpinner} spinPulse className='mx-auto' />
+                                        {/* <FontAwesomeIcon icon={faSpinner} spinPulse className='mx-auto' /> */}
                                     </div>
 
                                     {products.map((product) => (
@@ -291,6 +291,14 @@ const Video = () => {
                             </SheetHeader>
                         </SheetContent>
                     </Sheet>
+                </div>
+
+            </div>
+
+            <div className='bg-black'>
+
+                <div className='text-white'>
+
 
                 </div>
             </div>
