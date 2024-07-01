@@ -63,7 +63,7 @@ function App() {
       <BrowserRouter>
       <ClickedProductsProvider>
           <MoviesProvider movies={moviesList}>
-            <Navbar />
+            {/* <Navbar /> */}
             {/* <Banner /> */}
             {/* <Carousel /> */}
 

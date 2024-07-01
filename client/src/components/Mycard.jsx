@@ -45,7 +45,7 @@ const Mycard = ({ product }) => {
   return (
     <div className=''>
       <Card className="flex w-full max-w-2xl my-4">
-        <div className="w-[33%] overflow-hidden rounded-l-lg flex items-center justify-center">
+        <div className="w-[33%] overflow-hidden rounded-l-lg flex items-center justify-center max-h-[140px]">
           <img src={product.image_url} alt={product.title} className="object-contain " />
         </div>
         <div className="flex flex-col justify-between w-[67%] p-4">
@@ -64,7 +64,7 @@ const Mycard = ({ product }) => {
               </div>
             </div>
             <div className='flex flex-row items-center justify-between'>
-              <Button className='bg-[#ffd814] text-black text-xs p-1' size='xs'>
+              <Button className='bg-[#ffd814] text-black text-xs p-1 hover:bg-yellow-500' size='xs'>
                 <a href={product.product_url} className='flex flex-row' target="_blank" rel="noopener noreferrer">
                 Buy Now
                 <MdOutlineProductionQuantityLimits className='my-auto ml-2' />

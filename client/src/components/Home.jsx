@@ -11,6 +11,7 @@ const Home = () => {
         <div>
             {/* <Banner /> */}
             {/* <Navbar className='fixed' /> */}
+            <Navbar />
             <BannerSlider />
             <Carousel />
         </div>

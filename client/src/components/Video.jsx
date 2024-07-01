@@ -8,7 +8,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import videos from '../assets/airTrailer.mp4';
-import { MdOutlineProductionQuantityLimits } from "react-icons/md";
+import { MdOutlineScreenSearchDesktop } from "react-icons/md";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import Card from './Card';
@@ -25,6 +25,8 @@ import {
 import { MdOutlineDraw } from "react-icons/md";
 import Mycard from './Mycard';
 import { Button } from './ui/button';
+import Navbar from './Navbar';
+import VideoNavbar from './VideoNavbar';
 
 
 const Video = () => {
@@ -228,7 +230,9 @@ const Video = () => {
             mongoResponse.data.forEach(product => {
                 toast(
                     <div className="flex items-center p-4 bg-white rounded-lg shadow-md ">
-                        <img src={product.image_url} alt={product.title} className="h-20 rounded-lg mr-4" />
+                        <div className='rounded-l-lg flex items-center w-[33%] justify-center '>
+                            <img src={product.image_url} alt={product.title} className="h-20 rounded-lg mr-4 object-contain max-w-[80px] max-h-[80px]" />
+                        </div>
                         <div className="flex flex-col">
                             <strong className="font-bold text-sm text-gray-900 line-clamp-2">{product.title}</strong>
                             <div className="text-gray-600">Price: {product.price}</div>
@@ -247,25 +251,19 @@ const Video = () => {
 
 
     return (
-        <div className=''>
-            {/* <h1>Video {id}</h1> */}
-            <div className='py-1 w-full bg-black flex flex-row pb-[200px]'>
-                <video id="my-video-id" controls className='w-10/12 mx-auto rounded-lg border-grey border-2' ref={videoRef}>
-                    <source src={videos} type="video/mp4" />
-                </video>
-                <div className='mx-auto flex flex-col justify-center'>
-                    
-                    <br />
-                    <Button><a href="/viewed" className='text-xl flex flex-row'>Wishlisted <FaRegHeart size={26} className='mx-1'/> </a></Button>
-                    <Button onClick={handleSingleCrop} className='p-1 my-6 text-xl flex flex-row'>Sketch<MdOutlineDraw size={30} className='mx-1'/></Button>
-                    {/* <Button onClick={showToastMessage}>Notify</Button> */}
-                    <ToastContainer />
+        <div className='bg-black'>
+            <div className='flex items-center w-full h-fit sticky'>
+                <VideoNavbar className='flex-grow' />
+                <div className='flex items-center space-x-4'>
                     <Sheet className='text-white'>
                         <SheetTrigger className='z-20'>
-                            <Button onClick={clickHandler} className=' text-xl bg-[#ffd814] text-black hover:bg-yellow-500'>
-                                View Products
-                                <MdOutlineProductionQuantityLimits className='my-auto ml-2' />
-                            </Button>
+                            <div className='flex items-center justify-center flex-col'>
+                                <Button onClick={clickHandler} className='justify-center align-middle items-center mx-auto text-xl bg-[#ffd814] text-black hover:bg-yellow-500'>
+                                    Search Products
+                                    <MdOutlineScreenSearchDesktop className='my-auto ml-2 ' />
+                                </Button>
+
+                            </div>
                         </SheetTrigger>
 
                         <SheetContent className='bg-transparent overflow-y-auto' side='left' >
@@ -274,14 +272,14 @@ const Video = () => {
                                 <SheetDescription className=''>
                                     {/* <Card /> */}
                                     {/* <div style={cardStyle}>
-                                    <img src={product.image_url} alt={product.title} style={imageStyle} />
-                                    <h3><a href={product.product_url} target="_blank" rel="noopener noreferrer">{product.title}</a></h3>
-                                    <p>Price: {product.price}</p>
-                                </div> */}
+                                        <img src={product.image_url} alt={product.title} style={imageStyle} />
+                                        <h3><a href={product.product_url} target="_blank" rel="noopener noreferrer">{product.title}</a></h3>
+                                        <p>Price: {product.price}</p>
+                                    </div> */}
 
-                                    <div className='text-white ml-2 text-2xl text-bold mx-auto flex top-32 relative align-middle justify-center'>
-                                        {/* <FontAwesomeIcon icon={faSpinner} spinPulse className='mx-auto' /> */}
-                                    </div>
+                                    {/* <div className='text-white ml-2 text-2xl text-bold mx-auto flex top-32 relative align-middle justify-center'> */}
+                                    {/* <FontAwesomeIcon icon={faSpinner} spinPulse className='mx-auto' /> */}
+                                    {/* </div> */}
 
                                     {products.map((product) => (
                                         // <Card key={product._id} product={product} />
@@ -291,17 +289,33 @@ const Video = () => {
                             </SheetHeader>
                         </SheetContent>
                     </Sheet>
+                    <Button>
+                        <a href="/viewed" className=' flex items-center'>
+                            Wishlisted <FaRegHeart className='ml-1' />
+                        </a>
+                    </Button>
+                    <Button onClick={handleSingleCrop} className='p-2 flex items-center'>
+                        Sketch <MdOutlineDraw className='ml-1' />
+                    </Button>
                 </div>
+            </div>
+
+            {/* <div className='mx-auto flex flex-col justify-center'> */}
+            {/* <br /> */}
+            {/* <Button onClick={showToastMessage}>Notify</Button> */}
+            <ToastContainer />
+
+            {/* </div> */}
+            {/* <h1>Video {id}</h1> */}
+            <div className='py-1 w-full bg-black flex flex-row pb-[200px] pr-5'>
+                <video id="my-video-id" controls className='w-10/12 mx-auto rounded-lg border-grey border-2' ref={videoRef}>
+                    <source src={videos} type="video/mp4" />
+                </video>
+
 
             </div>
 
-            <div className='bg-black'>
 
-                <div className='text-white'>
-
-
-                </div>
-            </div>
             {/* <button onClick={clickHandler} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex flex-row my-auto'>XRAY <MdOutlineProductionQuantityLimits className='my-auto ml-2' /> </button> */}
             {/* <Button variant='outline' size='34' onClick={clickHandler} className='p-1 relative bottom-[105px] left-60'>XRAY <MdOutlineProductionQuantityLimits className='my-auto ml-2' /> </Button> */}
             {/* {imageSrc && <img src={imageSrc} alt="Captured frame" />} */}
