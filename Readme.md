@@ -52,11 +52,11 @@ Our project enhances the Amazon Prime viewing experience by integrating a Visual
 
 ### 2. Go to the Video :
 - While watching a movie or show, see a cool outfit, furniture piece, or anything else that catches your eye?
- ![Video Screen with "View Products" Button](./client/public/images/video.png)
+ ![Video Screen with "View Products" Button](./client/public/images/airnew.png)
 
 ### 3. Viewing Identified Products:
-- Click the "View Products" button. The system will analyze the frame and display a list of identified products in the scene.
- ![Frame for Product Identification](./client/public/images/frame.png)
+- Click the "Search Products" button. The system will analyze the frame and display a list of identified products in the scene.
+ ![Frame for Product Identification](./client/public/images/ssnew.png)
  ![List of Identified Products](./client/public/images/products.png)
 
 ### 4. Viewing Product Details on Amazon:
@@ -72,10 +72,14 @@ Our project enhances the Amazon Prime viewing experience by integrating a Visual
   
   ![Clicking Product and Redirecting to Amazon](https://github.com/eashanbhatia/HeavyComders/blob/main/client/public/videos/second.gif)
 
+- The Sketch feature where the user can search for a single product of his/her choice.
+
+  ![Sketch Feature](https://github.com/eashanbhatia/HeavyComders/blob/main/client/public/videos/third.gif)
+
 
 ## Technologies Used:
 - **ReactJS**: For developing a user-friendly frontend interface.
-- **Flask/ExpressJS**: For building the backend web application.
+- **Flask**: For building the backend web application.
 - **YOLO (You Only Look Once)**: For real-time object detection in video frames.
 - **Cosine Similarity**: To match detected products with Amazon's product listings.
 - **MongoDB**: For storing the products in the database.

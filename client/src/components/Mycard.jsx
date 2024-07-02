@@ -60,25 +60,25 @@ const Mycard = ({ product }) => {
                 Price: <FaRupeeSign className="my-auto" /> {product.price}
               </div>
               <div>
-                
+
               </div>
             </div>
             <div className='flex flex-row items-center justify-between'>
               <Button className='bg-[#ffd814] text-black text-xs p-1 hover:bg-yellow-500' size='xs'>
                 <a href={product.product_url} className='flex flex-row' target="_blank" rel="noopener noreferrer">
-                Buy Now
-                <MdOutlineProductionQuantityLimits className='my-auto ml-2' />
+                  Buy Now
+                  <MdOutlineProductionQuantityLimits className='my-auto ml-2' />
 
                 </a>
               </Button>
               <Button
-                  variant='outline'
-                  size='icon'
-                  onClick={toggleWishlist}
-                  className={`h-[32px] w-[32px] mr-2 ${isWishlisted ? 'text-pink-500' : ''}`}
-                >
-                  {isWishlisted ? <IoMdHeart /> : <FaRegHeart />}
-                </Button>
+                variant='outline'
+                size='icon'
+                onClick={toggleWishlist}
+                className={`h-[32px] w-[32px] mr-2 ${isWishlisted ? 'text-pink-500' : ''}`}
+              >
+                {isWishlisted ? <IoMdHeart /> : <FaRegHeart />}
+              </Button>
 
             </div>
           </div>
