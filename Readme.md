@@ -5,7 +5,7 @@
 - Eashan Bhatia
 - Aman Bhardwaj
 
-### Idea Submission Presentation: [HeavyComders Presentation](https://drive.google.com/file/d/1CSnzxC1jnVE1mqxHUcMpwTZ83e2NjVmb/view?usp=sharing)
+### Idea Submission Presentation: [HeavyComders Presentation](https://drive.google.com/file/d/1acrSknOgFZ5iC_utR0Z7-dz_3GBhIE5k/view?usp=sharing)
 
 ## Project Overview:
 Our project enhances the Amazon Prime viewing experience by integrating a Visual AI e-commerce feature. This feature extends the existing X-Ray function in Amazon Prime, allowing users to click on intriguing products seen in a movie or TV show and instantly view and purchase these items on Amazon.
